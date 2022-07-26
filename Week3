@@ -1,0 +1,75 @@
+function preload(){
+  data=loadJSON("data.json")
+}
+function setup() {
+  createCanvas(500,550);
+  angleMode(DEGREES);
+  textSize(10)
+}
+function draw() {
+  let y=20,x=20,count=0,no=12
+  background(255,254,238);
+  
+  textFont('Montserrat');
+  textSize(18)
+  
+  text("Popularity vs Profit Factor",width/1.4,height-50);
+  textSize(12)
+  
+ 
+
+  push()
+  fill(255,168,0)
+  ellipse(width/6,height-50,70)
+ 
+  fill(255,56,135)
+  
+  ellipse(width/6,height-50,50)
+   line(width/6,height-50,width/4.8,height-90)
+    line(width/4.8,height-90,width/3.9,height-90)
+     text(" Popularity",width/3.2,height-85)
+
+  
+    fill(255,168,0)
+    line(width/4.8,height-30,width/3.5,height-30)
+  
+     text(" Profit Factor",width/2.8,height-30)
+
+  
+  
+  pop()
+  line(0,height-110,width,height-110)
+   
+   
+   for(let i=0;i<4;i++)
+  {
+    for(let j=0;j<4;j++)
+      {
+        if(count<no)
+           {
+             count++
+             textAlign(CENTER)
+             text(data[count].MovieName,x+50,y+118)
+             films = data[count].MovieName; 
+             let radius=map(films,0,198,0,1)
+             let from = color(220);
+             let to = color(0);
+             
+             let rad=map(data[count].ProfitFactor,0,10,0,100)
+             let rad2=map(data[count].IMDB,0,10,0,50)
+           //  let interB = lerpColor(from, to, radius)
+            // stroke(interB); 
+              fill(255,168,0)
+             ellipse(x+50,y+65,rad)
+             fill(255,56,135)
+             ellipse(x+50,y+65,rad2)
+             fill(0)
+             // text(data[count].ProfitFactor,x+50,y+90);
+             // text(data[count].IMDB,x+50,y+70);
+                  x=x+120 
+           }
+      }
+    y=y+140
+    x=20
+  }
+}
